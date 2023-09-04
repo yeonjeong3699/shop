@@ -1,9 +1,10 @@
 import React from "react";
+import Products from "../components/Products";
 
 export default function AllItems() {
     return (
         <div>
-            All Items
+            <Products/>
         </div>
     )
 }

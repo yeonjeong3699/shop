@@ -12,7 +12,7 @@ export default function UserData({user: {displayName, photoURL}}){
 
 const UserItem = styled.div`
     display: flex;
-    gap: 12px;
+    gap: 8px;
     align-items: center;
     span{
         font-size: 15px;
@@ -22,7 +22,13 @@ const UserItem = styled.div`
     }
     img{
         width: 30px;
-        border-radius: 50%;
+        border-radius: 5px;
+        &:after{
+            content: "";
+            display: block;
+            width: 1px;
+            height: 10px;
+        }
     }
 
 `

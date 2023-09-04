@@ -4,7 +4,8 @@ import styled from "styled-components";
 import { login, logout, userState } from "../api/firebase";
 import UserData from "./UserData";
 import { BsFillPencilFill } from "react-icons/bs"
-import { useAuthConfirm } from "../context/AuthConFirm";
+import { RiShoppingCart2Fill } from "react-icons/ri"
+// import { useAuthConfirm } from "../context/AuthConfirm";
 
 export default function Nav() {
     // const [user, login, logout] = useAuthConfirm();
@@ -33,14 +34,14 @@ export default function Nav() {
 
             <nav>
                 <Link to='/items'>All Items</Link>
-                <Link to='/cart'>장바구니</Link>
             </nav>
 
             <UserWrap>
-                {user && user.isAdmin && <Link to='/items/new'><BsFillPencilFill className="write" /></Link>}
                 {user && <UserData user={user} />}
-                {!user && <button onClick={useLogin} className="loginBtn">login</button>}
-                {user && <button onClick={useLogout} className="logoutBtn">logout</button>}
+                {user && <Link to='/cart' className="iconWrap"><RiShoppingCart2Fill className="cart" /></Link>}
+                {user && user.isAdmin && <Link to='/items/new' className="iconWrap"><BsFillPencilFill className="write" /></Link>}
+                {!user && <button onClick={useLogin} className="logBtn">LOGIN</button>}
+                {user && <button onClick={useLogout} className="logBtn">LOGOUT</button>}
             </UserWrap>
         </HeaderContainer>
     )
@@ -70,12 +71,32 @@ const UserWrap = styled.div`
     display: flex;
     align-items: center;
     margin-left: auto;
-    gap: 12px;
-    a{
+    gap: 6px;
+    .iconWrap{
+        width: 30px;
+        height: 30px;
+        border-radius: 5px;
+        background-color: #F78181;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         .write{
-            font-size: 20px;
-            color: pink;
-            display: flex;
+            font-size: 16px;
+            color: white;
         }
+        .cart{
+            font-size: 20px;
+            color: white;
+        }
+    }
+    .logBtn{
+        width: 65px;
+        height: 30px;
+        border: none;
+        border-radius: 5px;
+        background-color: #BDBDBD;
+        color: white;
+        font-size: 12px;
+        cursor: pointer;
     }
 `
