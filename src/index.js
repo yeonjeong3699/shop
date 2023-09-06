@@ -8,7 +8,7 @@ import NotFound from './pages/NotFound';
 import AllItems from './pages/AllItems';
 import NewItem from './pages/NewItem';
 import Cart from './pages/Cart';
-import { useAuthContext } from './context/AuthConfirm';
+import { useAuthContext } from './context/AuthConFirm';
 
 /*
 gh-pages로 연동하게 되면 주소 뒤에 /repository 이름이 붙게 된다. (ex. localhost:3000 -> localhost:3000/shop)
