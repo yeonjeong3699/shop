@@ -5,7 +5,7 @@ export default function UserData({user: {displayName, photoURL}}){
     return(
         <UserItem>
             <span className="hidden">{displayName}님</span>
-            <img src={photoURL} alt={displayName}/>
+            {/* <img src={photoURL} alt={displayName}/> */}
         </UserItem>
     )
 }
@@ -23,12 +23,13 @@ const UserItem = styled.div`
     img{
         width: 30px;
         border-radius: 5px;
-        &:after{
+        /* &:after{
             content: "";
             display: block;
             width: 1px;
             height: 10px;
-        }
+            background-color: black;
+        } */
     }
 
 `

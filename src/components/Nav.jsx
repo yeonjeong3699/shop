@@ -48,10 +48,17 @@ export default function Nav() {
 }
 
 const HeaderContainer = styled.header`
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 999;
+    max-width: 1280px;
+    margin: 0px auto;
     padding: 12px;
-    border-bottom: solid 1px #dddddd;
     display: flex;
     align-items: center;
+    background-color: rgba(255, 255, 255, 0.8);
     .title{
         font-size: 20px;
         color: #333333;

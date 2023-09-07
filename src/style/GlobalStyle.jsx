@@ -51,5 +51,55 @@ table {
 a{
 	text-decoration: none;
 }
+
+//custom
+.container{
+	padding-top: 100px;
+	max-width: 1280px;
+	margin: 0px auto;
+}
+
+.categoryTitle{
+	text-align: center;
+	font-size: 40px;
+	font-weight: normal;
+	margin-bottom: 24px;
+}
+
+.productList{
+	display: flex;
+	flex-wrap: wrap;
+	gap: 36px 5%;
+}
+
+.productList > li{
+	flex-shrink: 0;
+	flex-basis: 30%;
+}
+
+.productList > li > img{
+	width: 100%;
+	display: block;
+}
+
+.textWrap{
+	margin-top: 20px;
+}
+
+.textWrap .itemTitle{
+	font-weight: normal;
+	font-size: 16px;
+	margin-bottom: 12px;
+}
+
+.textWrap .itemFlex{
+	display: flex;
+	justify-content: space-between;
+}
+
+.textWrap .itemFlex p{
+	font-size: 14px;
+}
+
 `
 export default GlobalStyle;

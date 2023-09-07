@@ -20,7 +20,7 @@ export default function Products() {
     }
 
     return (
-        <ul>
+        <ul className="productList">
             {products.map((products) => (
                 <ProductItem key={products.id} product={products} />
             ))}

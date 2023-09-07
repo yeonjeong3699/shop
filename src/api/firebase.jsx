@@ -74,8 +74,7 @@ export async function addProduct(product, image){
         id,
         price: parseInt(product.price),
         image,
-        option: product.option.split(',').map(option => option.trim()),
-        
+        option: product.option.split(',').map(option => option.trim())      
     })
 }
 
@@ -86,5 +85,33 @@ export async function getProducts(){
             return Object.values(snapshot.val())
         }
         return []
+    })
+}
+
+//카테고리 불러오기
+export async function getCategory(){
+    const database = getDatabase();
+    const categoryRef = ref(database, 'products');
+    try{
+        const snapshot = await get(categoryRef);
+        if(snapshot.exists()){
+            return Object.values(snapshot.val());
+        }
+        return []
+    }catch(error){
+        console.error(error);
+        throw error;
+    }
+}
+
+//카테고리 필터
+export async function getCategoryProduct(category){
+    return get(ref(database, 'products')).then((snapshot)=>{
+        if(snapshot.exists()){
+            const allProduct = Object.values(snapshot.val());
+            const filterProduct = allProduct.filter((product)=>(product.category === category))
+            return filterProduct
+        }
+        return [];
     })
 }
