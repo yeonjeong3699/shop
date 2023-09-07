@@ -5,7 +5,7 @@ export default function UserData({user: {displayName, photoURL}}){
     return(
         <UserItem>
             <span className="hidden">{displayName}님</span>
-            {/* <img src={photoURL} alt={displayName}/> */}
+            <img src={photoURL} alt={displayName}/>
         </UserItem>
     )
 }
@@ -15,7 +15,10 @@ const UserItem = styled.div`
     gap: 8px;
     align-items: center;
     span{
-        font-size: 15px;
+        font-family: 'GmarketSansLight';
+        font-weight: 900;
+        font-size: 18px;
+        color: #555;        
         @media screen and (max-width:768px){
             display: none;
         }
@@ -23,13 +26,6 @@ const UserItem = styled.div`
     img{
         width: 30px;
         border-radius: 5px;
-        /* &:after{
-            content: "";
-            display: block;
-            width: 1px;
-            height: 10px;
-            background-color: black;
-        } */
     }
 
 `

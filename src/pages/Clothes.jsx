@@ -24,11 +24,11 @@ export default function Clothes() {
                 <ul className="productList">
                     {product.map((product) => (
                         <li key={product.id}>
-                            <img src={product.image} alt={product.title} />
+                            <div className="imgBox"><img src={product.image} alt={product.title} /></div>
                             <div className="textWrap">
                                 <h3 className="itemTitle">{product.title}</h3>
                                 <div className="itemFlex">
-                                    <p className="itemPrice">{product.price.toLocaleString()}</p>
+                                    <p className="itemPrice">{product.price.toLocaleString()}원 ~</p>
                                     <p className="option">{product.option.join(', ')}</p>
                                 </div>
                             </div>

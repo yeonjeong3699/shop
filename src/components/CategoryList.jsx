@@ -40,7 +40,10 @@ const CategoryItemList = styled.ul`
 
 const CategoryItem = styled.li`
     a{
-        color: #999999;
+        font-family: 'GmarketSansLight';
+        font-weight: 900;
+        font-size: 18px;
+        color: #999;
         transition: 300ms;
         &:hover{
             color: #333333;

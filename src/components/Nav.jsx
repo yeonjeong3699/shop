@@ -29,11 +29,14 @@ export default function Nav() {
     return (
         <HeaderContainer>
             <Link to='/'>
-                <h1 className="title">title</h1>
+                <h1 className="title">견생역전</h1>
             </Link>
 
             <nav>
-                <Link to='/items'>All Items</Link>
+                <Link to='/items'>전체상품</Link>
+                <Link to='/items'>베스트</Link>
+                <Link to='/items'>신상품</Link>
+                <Link to='/items'>이벤트</Link>
             </nav>
 
             <UserWrap>
@@ -60,16 +63,25 @@ const HeaderContainer = styled.header`
     align-items: center;
     background-color: rgba(255, 255, 255, 0.8);
     .title{
-        font-size: 20px;
-        color: #333333;
+        font-family: 'TTTogether';
+        font-weight: 100;
+        font-size: 45px;
+        color: #285430;
     }
     nav{
         display: flex;
         align-items: center;
-        gap: 12px;
-        margin-left: 30px;
+        gap: 24px;
+        margin-left: 50px;
         a{
-            color: #333333;
+            font-family: 'GmarketSansMedium';
+            font-size: 22px;
+            color: #555;
+            letter-spacing: -0.5px;
+            transition: 300ms;
+            &:hover{
+                color: #AACB73;
+            }
         }
     }
 `
@@ -83,7 +95,7 @@ const UserWrap = styled.div`
         width: 30px;
         height: 30px;
         border-radius: 5px;
-        background-color: #F78181;
+        background-color: #A4BE7B;
         display: flex;
         justify-content: center;
         align-items: center;

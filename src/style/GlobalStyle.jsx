@@ -1,6 +1,35 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+
+@font-face {
+    font-family: 'TTTogether';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/TTTogetherA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansLight';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 /* v2.0 | 20110126
   http://meyerweb.com/eric/tools/css/reset/ 
   License: none (public domain)
@@ -61,8 +90,10 @@ a{
 
 .categoryTitle{
 	text-align: center;
+	font-family: 'GmarketSansBold';
 	font-size: 40px;
 	font-weight: normal;
+	color: #333;
 	margin-bottom: 24px;
 }
 
@@ -77,9 +108,18 @@ a{
 	flex-basis: 30%;
 }
 
-.productList > li > img{
+.productList > li > .imgBox{
+	overflow: hidden;
+	border-radius: 20px;
+}
+
+.productList > li > .imgBox > img{
 	width: 100%;
 	display: block;
+	transition: 500ms;
+	&:hover{
+		transform: scale(1.2);
+	}
 }
 
 .textWrap{
@@ -87,8 +127,8 @@ a{
 }
 
 .textWrap .itemTitle{
-	font-weight: normal;
-	font-size: 16px;
+	font-family: 'GmarketSansMedium';
+	font-size: 20px;
 	margin-bottom: 12px;
 }
 
@@ -98,7 +138,9 @@ a{
 }
 
 .textWrap .itemFlex p{
-	font-size: 14px;
+	font-family: 'GmarketSansLight';
+	font-size: 16px;
+	font-weight: 900;
 }
 
 `
