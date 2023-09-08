@@ -9,12 +9,14 @@ import AllItems from './pages/AllItems';
 import NewItem from './pages/NewItem';
 import Cart from './pages/Cart';
 import { useAuthContext } from './context/AuthConFirm';
-import Carrier from './pages/Carrier';
-import Clothes from './pages/Clothes';
-import Cushion from './pages/Cushion';
-import Food from './pages/Food';
-import Harness from './pages/Harness';
-import Toy from './pages/Toy';
+// import Carrier from './pages/Carrier';
+// import Clothes from './pages/Clothes';
+// import Cushion from './pages/Cushion';
+// import Food from './pages/Food';
+// import Harness from './pages/Harness';
+// import Toy from './pages/Toy';
+import CategoryPage from './components/CategoryPage';
+import DetailPage from './pages/DetailPage';
 
 /*
 gh-pages로 연동하게 되면 주소 뒤에 /repository 이름이 붙게 된다. (ex. localhost:3000 -> localhost:3000/shop)
@@ -50,29 +52,38 @@ const routes = [
         element: <ProtectedRouter><Cart /></ProtectedRouter>
       },
       {
-        path: '/items/이동가방',
-        element: <Carrier/>
+        path: '/items/:category',
+        element: <CategoryPage/>
       },
       {
-        path: '/items/옷',
-        element: <Clothes/>
-      },
-      {
-        path: '/items/방석',
-        element: <Cushion/>
-      },
-      {
-        path: '/items/사료',
-        element: <Food/>
-      },
-      {
-        path: '/items/하네스',
-        element: <Harness/>
-      },
-      {
-        path: '/items/장난감',
-        element: <Toy/>
+        path: 'items/:id',
+        element: <DetailPage/>
       }
+
+      // {
+      //   path: '/items/이동가방',
+      //   element: <Carrier/>
+      // },
+      // {
+      //   path: '/items/옷',
+      //   element: <Clothes/>
+      // },
+      // {
+      //   path: '/items/방석',
+      //   element: <Cushion/>
+      // },
+      // {
+      //   path: '/items/사료',
+      //   element: <Food/>
+      // },
+      // {
+      //   path: '/items/하네스',
+      //   element: <Harness/>
+      // },
+      // {
+      //   path: '/items/장난감',
+      //   element: <Toy/>
+      // }
     ]
   }
 ]

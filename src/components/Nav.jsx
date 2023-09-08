@@ -28,62 +28,68 @@ export default function Nav() {
 
     return (
         <HeaderContainer>
-            <Link to='/'>
-                <h1 className="title">견생역전</h1>
-            </Link>
+            <div className="inner">
+                <Link to='/'>
+                    <h1 className="title">견생역전</h1>
+                </Link>
 
-            <nav>
-                <Link to='/items'>전체상품</Link>
-                <Link to='/items'>베스트</Link>
-                <Link to='/items'>신상품</Link>
-                <Link to='/items'>이벤트</Link>
-            </nav>
+                <nav>
+                    <Link to='/items'>전체상품</Link>
+                    <Link to='/items'>베스트</Link>
+                    <Link to='/items'>신상품</Link>
+                    <Link to='/items'>이벤트</Link>
+                </nav>
 
-            <UserWrap>
-                {user && <UserData user={user} />}
-                {user && <Link to='/cart' className="iconWrap"><RiShoppingCart2Fill className="cart" /></Link>}
-                {user && user.isAdmin && <Link to='/items/new' className="iconWrap"><BsFillPencilFill className="write" /></Link>}
-                {!user && <button onClick={useLogin} className="logBtn">LOGIN</button>}
-                {user && <button onClick={useLogout} className="logBtn">LOGOUT</button>}
-            </UserWrap>
+                <UserWrap>
+                    {user && <UserData user={user} />}
+                    {user && <Link to='/cart' className="iconWrap"><RiShoppingCart2Fill className="cart" /></Link>}
+                    {user && user.isAdmin && <Link to='/items/new' className="iconWrap"><BsFillPencilFill className="write" /></Link>}
+                    {!user && <button onClick={useLogin} className="logBtn">LOGIN</button>}
+                    {user && <button onClick={useLogout} className="logBtn">LOGOUT</button>}
+                </UserWrap>
+            </div>
         </HeaderContainer>
     )
 }
 
 const HeaderContainer = styled.header`
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    z-index: 999;
-    max-width: 1280px;
-    margin: 0px auto;
+    /* position: fixed;
+    z-index: 999; */
+    width: 100%;
     padding: 12px;
-    display: flex;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.8);
-    .title{
-        font-family: 'TTTogether';
-        font-weight: 100;
-        font-size: 45px;
-        color: #285430;
-    }
-    nav{
+    /* background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1); */
+    .inner{
+        max-width: 1280px;
         display: flex;
         align-items: center;
-        gap: 24px;
-        margin-left: 50px;
-        a{
-            font-family: 'GmarketSansMedium';
-            font-size: 22px;
-            color: #555;
-            letter-spacing: -0.5px;
-            transition: 300ms;
-            &:hover{
-                color: #AACB73;
+        margin: 0px auto;
+        
+        .title{
+            font-family: 'TTTogether';
+            font-weight: 100;
+            font-size: 40px;
+            color: #285430;
+        }
+        nav{
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-left: 50px;
+
+            a{
+                font-family: 'GmarketSansMedium';
+                font-size: 22px;
+                color: #555;
+                letter-spacing: -0.5px;
+                transition: 300ms;
+                &:hover{
+                    color: #AACB73;
+                }
             }
         }
     }
+
 `
 
 const UserWrap = styled.div`

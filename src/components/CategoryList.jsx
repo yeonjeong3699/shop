@@ -9,8 +9,8 @@ export default function CategoryList() {
 
     const setCategory = new Set(); //new Set: 특정한 값을 배열로 출력해주는 메서드. array, map 등과 달리 중복 요소를 구분한다.
 
-    if(categories){
-        categories.forEach((categoryObject)=>{
+    if (categories) {
+        categories.forEach((categoryObject) => {
             setCategory.add(categoryObject.category); //add: 배열에 추가하는 메서드
         })
     }
@@ -21,7 +21,7 @@ export default function CategoryList() {
 
     return (
         <CategoryItemList>
-            {setCategoryArr.map((category, index)=>(
+            {setCategoryArr.map((category, index) => (
                 <CategoryItem key={index}>
                     <Link to={`/items/${category}`}>
                         {category}

@@ -1,20 +1,31 @@
 import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
-import { get, getDatabase, ref, set } from "firebase/database"; //데이터베이스에 있는 파이어베이스의 정보를 가져오는 훅
+
+//데이터베이스에 있는 파이어베이스의 정보를 가져오는 훅
+import { get, getDatabase, ref, set } from "firebase/database";
 import { v4 as uuid } from 'uuid' //uuid: 고유 식별자를 생성해주는 패키지
+
+//파이어베이스 스토리지에서 파일 다운받기
+import { getStorage, ref as storageRef, getDownloadURL } from "firebase/storage"; //ref as storageRef : database에서 가져오는 ref와 충돌하기 때문에 이름 변경
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
     authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
     projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    databaseURL: process.env.REACT_APP_FIREBASE_DB_URL
+    databaseURL: process.env.REACT_APP_FIREBASE_DB_URL,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_STORAGE_MESSAGINGSENDERID
 };
 
 //Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth();
+const auth = getAuth(app); //매개변수에 app추가
 const provider = new GoogleAuthProvider();
 const database = getDatabase(app);
+const storage = getStorage(app); //추가
+
+export { storage };
+export { auth };
 
 
 //자동 로그인 방지
@@ -33,33 +44,33 @@ export async function login() {
         }).catch(console.error);
 }
 
-export async function logout(){
+export async function logout() {
     signOut(auth).then(() => {
         // Sign-out successful.
-      }).catch(console.error)
+    }).catch(console.error)
 }
 
 
 //사용자의 정보를 받아올 함수
-export function userState(callback){
-    onAuthStateChanged(auth, async(user)=>{
+export function userState(callback) {
+    onAuthStateChanged(auth, async (user) => {
         const userUpdate = user ? await adminUser(user) : user;
         callback(userUpdate);
     })
 }
 
-async function adminUser(user){
-    try{
+async function adminUser(user) {
+    try {
         const adminState = await get(ref(database, 'admin')); //adminState : database 주소에 있는 database 중에서 admin 값을 가져온다(get)
-        if(adminState.exists()){ //adminState.exists : adminState에서 가져온 database 쿼리에서 얻는 객체
+        if (adminState.exists()) { //adminState.exists : adminState에서 가져온 database 쿼리에서 얻는 객체
             const admins = adminState.val();
             const isAdmin = admins.includes(user.email);
             //isAdmin : user에서 받아온 email 주소가 database에서 받아온 admin의 정보가 포함되는지(includes) 묻는 구문.
             //포함되어 있으면 true, 포함되어 있지 않으면 false
-            return {...user, isAdmin}; //user의 배열에 isAdmin 값을 추가해서 새로 배열을 반환.
+            return { ...user, isAdmin }; //user의 배열에 isAdmin 값을 추가해서 새로 배열을 반환.
         }
         return user;
-    }catch(error){
+    } catch (error) {
         console.error(error) //오류가 생겼을 경우 콘솔에 오류 표시
         throw error //오류를 다시 발생시켜 오류를 포착할 수 있게 함. (없어도 상관은 없음)
     }
@@ -67,21 +78,21 @@ async function adminUser(user){
 
 
 //파이어베이스에 상품 정보 연동하기
-export async function addProduct(product, image){
+export async function addProduct(product, image) {
     const id = uuid();
-    return set(ref(database, `products/${id}`),{
+    return set(ref(database, `products/${id}`), {
         ...product,
         id,
         price: parseInt(product.price),
         image,
-        option: product.option.split(',').map(option => option.trim())      
+        option: product.option.split(',').map(option => option.trim())
     })
 }
 
 //파이어베이스 database에 있는 정보 가져오기
-export async function getProducts(){
-    return get(ref(database, 'products')).then((snapshot)=>{ //snapshot: 렌더링
-        if(snapshot.exists()){
+export async function getProducts() {
+    return get(ref(database, 'products')).then((snapshot) => { //snapshot: 렌더링
+        if (snapshot.exists()) {
             return Object.values(snapshot.val())
         }
         return []
@@ -89,29 +100,43 @@ export async function getProducts(){
 }
 
 //카테고리 불러오기
-export async function getCategory(){
+export async function getCategory() {
     const database = getDatabase();
     const categoryRef = ref(database, 'products');
-    try{
+    try {
         const snapshot = await get(categoryRef);
-        if(snapshot.exists()){
+        if (snapshot.exists()) {
             return Object.values(snapshot.val());
         }
         return []
-    }catch(error){
+    } catch (error) {
         console.error(error);
         throw error;
     }
 }
 
 //카테고리 필터
-export async function getCategoryProduct(category){
-    return get(ref(database, 'products')).then((snapshot)=>{
-        if(snapshot.exists()){
+export async function getCategoryProduct(category) {
+    return get(ref(database, 'products')).then((snapshot) => {
+        if (snapshot.exists()) {
             const allProduct = Object.values(snapshot.val());
-            const filterProduct = allProduct.filter((product)=>(product.category === category))
+            const filterProduct = allProduct.filter((product) => (product.category === category))
             return filterProduct
         }
         return [];
     })
+}
+
+//storage 이미지 불러오기
+export async function loadSlideImage(imgPath) {
+    const storage = getStorage();
+
+    try {
+        const imgRef = storageRef(storage, imgPath);
+        const downloadURL = await getDownloadURL(imgRef);
+
+        return downloadURL;
+    } catch (error) {
+        console.error(error);
+    }
 }

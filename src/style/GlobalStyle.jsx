@@ -83,18 +83,18 @@ a{
 
 //custom
 .container{
-	padding-top: 100px;
+	padding-top: 10px;
 	max-width: 1280px;
 	margin: 0px auto;
 }
 
 .categoryTitle{
-	text-align: center;
+	/* text-align: center; */
 	font-family: 'GmarketSansBold';
 	font-size: 40px;
 	font-weight: normal;
 	color: #333;
-	margin-bottom: 24px;
+	margin: 24px;
 }
 
 .productList{
@@ -128,8 +128,10 @@ a{
 
 .textWrap .itemTitle{
 	font-family: 'GmarketSansMedium';
-	font-size: 20px;
+	font-size: 22px;
 	margin-bottom: 12px;
+	color: #285430;
+	letter-spacing: -0.5px;
 }
 
 .textWrap .itemFlex{
@@ -141,6 +143,8 @@ a{
 	font-family: 'GmarketSansLight';
 	font-size: 16px;
 	font-weight: 900;
+	color: #555;
+	letter-spacing: -0.5px;
 }
 
 `

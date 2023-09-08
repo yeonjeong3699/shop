@@ -4,6 +4,7 @@ import Nav from './components/Nav';
 import { AuthContextProvider } from './context/AuthConFirm';
 import GlobalStyle from './style/GlobalStyle';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+// import SliderItem from './components/SliderItem';
 
 const queryclient = new QueryClient();
 
@@ -12,6 +13,7 @@ function App() {
     <>
       <QueryClientProvider client={queryclient}>
         <AuthContextProvider>
+          {/* <SliderItem/> */}
           <GlobalStyle />
           <Nav />
           <Outlet />
