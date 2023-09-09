@@ -147,5 +147,13 @@ a{
 	letter-spacing: -0.5px;
 }
 
+.on{
+	position: fixed;
+    z-index: 999;
+	background-color: rgba(255, 255, 255, 0.85);
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+	border-bottom: solid 1px #eeeeee;
+}
+
 `
 export default GlobalStyle;
