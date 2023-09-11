@@ -56,7 +56,7 @@ const routes = [
         element: <CategoryPage/>
       },
       {
-        path: 'items/:id',
+        path: 'items/detail/:id',
         element: <DetailPage/>
       }
 

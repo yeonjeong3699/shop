@@ -83,7 +83,7 @@ a{
 
 //custom
 .container{
-	padding-top: 10px;
+	padding-top: 20px;
 	max-width: 1280px;
 	margin: 0px auto;
 }
@@ -153,6 +153,104 @@ a{
 	background-color: rgba(255, 255, 255, 0.85);
     box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
 	border-bottom: solid 1px #eeeeee;
+}
+
+//detailPage
+.detailPage{
+	max-width: 1280px;
+	display: flex;
+	justify-content: center;
+	gap: 80px;
+	margin-top: 30px;
+	.detailImg{
+		max-width: 600px;
+		img{
+			width: 100%;
+			display: block;
+			border-radius: 20px;
+		}
+	}
+	.detailText{
+		width: 500px;
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		h2{
+			width: 100%;
+			padding-bottom: 10px;
+			border-bottom: solid 1px #ddd;
+			font-family: 'GmarketSansMedium';
+			font-size: 36px;
+			letter-spacing: -1px;
+		}
+		.description{
+			font-family: 'GmarketSansLight';
+			font-weight: 700;
+			font-size: 16px
+		}
+		.detail-opt{
+
+		}
+		.btn-box{
+			width: 100%;
+			height: 60px;
+			display: flex;
+			gap: 10px;
+			.buy-btn{
+				width: 87%;
+				height: 100%;
+				border: none;
+				border-radius: 10px;
+				background-color: #285430;
+				color: white;
+				font-family: 'GmarketSansMedium';
+				font-size: 22px;
+				letter-spacing: 1px;
+				cursor: pointer;
+			}
+			.cart-btn{
+				width: 13%;
+				height: 100%;
+				border: solid 1px #BDBDBD;
+				border-radius: 10px;
+				background-color: white;
+				color: #285430;
+				font-size: 28px;
+				cursor: pointer;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			}
+
+		}	
+		.alert-msg{
+
+		}
+		.price{
+			width: 100%;
+			padding-bottom: 16px;
+			font-family: 'GmarketSansMedium';
+			font-size: 30px;
+		}
+	}
+}
+
+.cartList{
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	border-top: solid 1px #dddddd;
+	padding: 24px 0px;
+	li{
+		display: flex;
+		align-items: center;
+		border-bottom: solid 1px #dddddd;
+		
+		img{
+			width: 80px;
+		}
+	}
+
 }
 
 `

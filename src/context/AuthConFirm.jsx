@@ -17,7 +17,7 @@ export function AuthContextProvider({ children }) {
     }, [])
 
     return (
-        <AuthConfirm.Provider value={{user, login, logout}}>
+        <AuthConfirm.Provider value={{user, uid:user && user.uid, login, logout}}>
             {children}
         </AuthConfirm.Provider>
     )

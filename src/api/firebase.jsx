@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
 
 //데이터베이스에 있는 파이어베이스의 정보를 가져오는 훅
-import { get, getDatabase, ref, set } from "firebase/database";
+import { get, getDatabase, ref, set, remove } from "firebase/database";
 import { v4 as uuid } from 'uuid' //uuid: 고유 식별자를 생성해주는 패키지
 
 //파이어베이스 스토리지에서 파일 다운받기
@@ -139,4 +139,30 @@ export async function loadSlideImage(imgPath) {
     } catch (error) {
         console.error(error);
     }
+}
+
+//카트 리스트 추가
+export async function getCart(userId) { //로그인한 계정의 카트 정보를 받아옴
+    return get(ref(database, `cart/${userId}`))
+        .then((snapshot) => {
+            const item = snapshot.val()
+            console.log(item)
+            return Object.values(item);
+           
+        })
+}
+
+export async function updateCart(userId, product) {
+    try {
+        const cartRef = ref(database, `cart/${userId}/${product.id}`);
+        console.log(product.id)
+        await set(cartRef, product);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//카트 리스트 삭제
+export async function deleteItemCart(userId, productId){
+    return remove(ref(database, `cart/${userId}/${productId}`))
 }
