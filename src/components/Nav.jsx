@@ -5,6 +5,7 @@ import { login, logout, userState } from "../api/firebase";
 import UserData from "./UserData";
 import { BsFillPencilFill } from "react-icons/bs"
 import { RiShoppingCart2Fill } from "react-icons/ri"
+import { BiSearch } from "react-icons/bi"
 // import { useAuthConfirm } from "../context/AuthConfirm";
 
 export default function Nav() {
@@ -49,7 +50,7 @@ export default function Nav() {
         그렇지 않으면 여러번 호출 되고, 메모리에 쓰레기가 차게 됩니다.
         */
     })
- 
+
     return (
         <HeaderContainer className={scroll > 0 ? 'on' : ''}>
             <div className="inner">
@@ -67,6 +68,7 @@ export default function Nav() {
                 <UserWrap>
                     {user && <UserData user={user} />}
                     {user && <Link to='/cart' className="iconWrap"><RiShoppingCart2Fill className="cart" /></Link>}
+                    <Link to='/search' className="iconWrap"><BiSearch className="search" /></Link>
                     {user && user.isAdmin && <Link to='/items/new' className="iconWrap"><BsFillPencilFill className="write" /></Link>}
                     {!user && <button onClick={useLogin} className="logBtn">LOGIN</button>}
                     {user && <button onClick={useLogout} className="logBtn">LOGOUT</button>}
@@ -128,6 +130,10 @@ const UserWrap = styled.div`
         align-items: center;
         .write{
             font-size: 16px;
+            color: white;
+        }
+        .search{
+            font-size: 22px;
             color: white;
         }
         .cart{

@@ -130,7 +130,7 @@ const FormContainer = styled.div`
         }
         button{
             color: white;
-            background-color: #F78181;
+            background-color: #285430;
             border: none;
             border-radius: 5px;
             padding: 12px 0px;

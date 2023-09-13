@@ -148,7 +148,7 @@ export async function getCart(userId) { //로그인한 계정의 카트 정보�
             const item = snapshot.val()
             console.log(item)
             return Object.values(item);
-           
+
         })
 }
 
@@ -163,6 +163,34 @@ export async function updateCart(userId, product) {
 }
 
 //카트 리스트 삭제
-export async function deleteItemCart(userId, productId){
+export async function deleteItemCart(userId, productId) {
     return remove(ref(database, `cart/${userId}/${productId}`))
+}
+
+//검색창
+export async function searchProducts(query) {
+    try {
+        const dbRef = ref(database, 'products');
+        const snapshot = await get(dbRef);
+
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            const allProduct = Object.values(data);
+
+            if (allProduct.length === 0) {
+                return [];
+            }
+
+            const matchItems = allProduct.filter((product) => {
+                const itemTitle = product.title.toLowerCase() //toLowerCase: 받아온 문자열을 모두 소문자로 변환
+                return itemTitle.includes(query.toLowerCase());
+            })
+
+            return matchItems;
+        }else{
+            return [];
+        }
+    } catch (error) {
+        console.error(error);
+    }
 }

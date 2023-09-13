@@ -122,6 +122,20 @@ a{
 	}
 }
 
+.productList > li > li > .imgBox{
+	overflow: hidden;
+	border-radius: 20px;
+}
+
+.productList > li > li > .imgBox > img{
+	width: 100%;
+	display: block;
+	transition: 500ms;
+	&:hover{
+		transform: scale(1.2);
+	}
+}
+
 .textWrap{
 	margin-top: 20px;
 }
@@ -243,11 +257,47 @@ a{
 	padding: 24px 0px;
 	li{
 		display: flex;
+		gap: 10px;
 		align-items: center;
 		border-bottom: solid 1px #dddddd;
 		
 		img{
 			width: 80px;
+		}
+
+		p{
+			font-family: 'GmarketSansMedium';
+			font-size: 18px;
+			color: #555555;
+		}
+
+		.quantity-arrow-box{
+			display: flex;
+			flex-direction: column;
+			gap: 3px;
+			.quantity-arrow{
+				cursor: pointer;
+				width: 20px;
+				height: 14px;
+				background-color: #555;
+				border-radius: 3px;
+				color: white;
+			}
+		}
+
+		button{
+			width: 50px;
+			height: 30px;
+			border: none;
+			border-radius: 5px;
+			background-color: #A4BE7B;
+			color: white;
+			font-size: 12px;
+			cursor: pointer;
+			font-family: 'GmarketSansLight';
+			font-weight: 900;
+			font-size: 15px;
+			letter-spacing: 1px;
 		}
 	}
 

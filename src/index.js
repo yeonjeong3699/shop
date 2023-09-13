@@ -9,14 +9,9 @@ import AllItems from './pages/AllItems';
 import NewItem from './pages/NewItem';
 import Cart from './pages/Cart';
 import { useAuthContext } from './context/AuthConFirm';
-// import Carrier from './pages/Carrier';
-// import Clothes from './pages/Clothes';
-// import Cushion from './pages/Cushion';
-// import Food from './pages/Food';
-// import Harness from './pages/Harness';
-// import Toy from './pages/Toy';
 import CategoryPage from './components/CategoryPage';
 import DetailPage from './pages/DetailPage';
+import Search from './pages/Search';
 
 /*
 gh-pages로 연동하게 되면 주소 뒤에 /repository 이름이 붙게 된다. (ex. localhost:3000 -> localhost:3000/shop)
@@ -24,10 +19,10 @@ gh-pages로 연동하게 되면 주소 뒤에 /repository 이름이 붙게 된�
 */
 
 
-const ProtectedRouter = ({checkAdmin, children})=>{
-  const {user}=useAuthContext();
-  if(!user || (checkAdmin && !user.isAdmin)){
-    return <Navigate to='/' replace/>
+const ProtectedRouter = ({ checkAdmin, children }) => {
+  const { user } = useAuthContext();
+  if (!user || (checkAdmin && !user.isAdmin)) {
+    return <Navigate to='/' replace />
   }
   return children
 }
@@ -53,37 +48,16 @@ const routes = [
       },
       {
         path: '/items/:category',
-        element: <CategoryPage/>
+        element: <CategoryPage />
       },
       {
         path: 'items/detail/:id',
-        element: <DetailPage/>
+        element: <DetailPage />
+      },
+      {
+        path: '/search',
+        element: <Search />
       }
-
-      // {
-      //   path: '/items/이동가방',
-      //   element: <Carrier/>
-      // },
-      // {
-      //   path: '/items/옷',
-      //   element: <Clothes/>
-      // },
-      // {
-      //   path: '/items/방석',
-      //   element: <Cushion/>
-      // },
-      // {
-      //   path: '/items/사료',
-      //   element: <Food/>
-      // },
-      // {
-      //   path: '/items/하네스',
-      //   element: <Harness/>
-      // },
-      // {
-      //   path: '/items/장난감',
-      //   element: <Toy/>
-      // }
     ]
   }
 ]
