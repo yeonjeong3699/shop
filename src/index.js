@@ -12,6 +12,8 @@ import { useAuthContext } from './context/AuthConFirm';
 import CategoryPage from './components/CategoryPage';
 import DetailPage from './pages/DetailPage';
 import Search from './pages/Search';
+import Login from './pages/Login';
+import Join from './pages/Join';
 
 /*
 gh-pages로 연동하게 되면 주소 뒤에 /repository 이름이 붙게 된다. (ex. localhost:3000 -> localhost:3000/shop)
@@ -57,6 +59,14 @@ const routes = [
       {
         path: '/search',
         element: <Search />
+      },
+      {
+        path: '/login',
+        element: <Login />
+      },
+      {
+        path: '/join',
+        element: <Join />
       }
     ]
   }

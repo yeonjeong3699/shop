@@ -37,18 +37,6 @@ export default function Nav() {
 
     useEffect(() => {
         window.addEventListener('scroll', scrollMove);
-        // console.log(scroll);
-
-        // return () => {
-        //     window.removeEventListener('scroll', scrollMove);
-        // }
-
-        /*
-        <removeEventListener 설명인데 무슨 상황을 말하는건지 모르겠음>
-        지금 같이 스크롤을 사용하는 경우 처럼 한 번 실행하는 것이 아닌
-        여러번 addEventListener를 사용할 때에는 removeEventListener를 꼭 해주세요! 
-        그렇지 않으면 여러번 호출 되고, 메모리에 쓰레기가 차게 됩니다.
-        */
     })
 
     return (
@@ -56,6 +44,8 @@ export default function Nav() {
             <div className="inner">
                 <Link to='/'>
                     <h1 className="title">견생역전</h1>
+                    {/* <img src={`${process.env.PUBLIC_URL}/img/logo.jpg`} /> */}
+                    {/* src에 있는 이미지 가져오는 방법 */}
                 </Link>
 
                 <nav>
@@ -66,12 +56,28 @@ export default function Nav() {
                 </nav>
 
                 <UserWrap>
-                    {user && <UserData user={user} />}
                     {user && <Link to='/cart' className="iconWrap"><RiShoppingCart2Fill className="cart" /></Link>}
                     <Link to='/search' className="iconWrap"><BiSearch className="search" /></Link>
                     {user && user.isAdmin && <Link to='/items/new' className="iconWrap"><BsFillPencilFill className="write" /></Link>}
+
+                    {user ? (
+                        <>
+                            {user && <UserData user={user} />}
+                            <button onClick={useLogout} className="logBtn">LOGOUT</button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to='/login'>
+                                <button className="logBtn">LOGIN</button>
+                            </Link>
+                        </>
+                    )}
+
+                    {/*
+                    로그인 구버전
                     {!user && <button onClick={useLogin} className="logBtn">LOGIN</button>}
                     {user && <button onClick={useLogout} className="logBtn">LOGOUT</button>}
+                    */}
                 </UserWrap>
             </div>
         </HeaderContainer>

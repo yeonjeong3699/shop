@@ -46,15 +46,15 @@ export default function DetailPage() { //useLocation: 현재 url의 정보를 �
                                 <option key={index}>{option}</option>
                             ))}
                         </select>
+                        <p className="price">{price.toLocaleString()}원</p>
                     </div>
 
                     <div className="btn-box">
+
                         <button className="buy-btn">구매하기</button>
                         <button className="cart-btn" onClick={CartItem}><RiShoppingCart2Fill /></button>
                     </div>
                     {success && <p className="alert-msg">{success}</p>}
-
-                    <p className="price">{price.toLocaleString()}원</p>
                 </div>
             </div>
         </div>

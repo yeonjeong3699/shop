@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged } from "firebase/auth";
+import { getAuth, signInWithPopup, signOut, GoogleAuthProvider, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 //데이터베이스에 있는 파이어베이스의 정보를 가져오는 훅
-import { get, getDatabase, ref, set, remove } from "firebase/database";
+import { get, getDatabase, ref, set, remove, query, orderByChild, equalTo } from "firebase/database";
 import { v4 as uuid } from 'uuid' //uuid: 고유 식별자를 생성해주는 패키지
 
 //파이어베이스 스토리지에서 파일 다운받기
@@ -187,10 +187,52 @@ export async function searchProducts(query) {
             })
 
             return matchItems;
-        }else{
+        } else {
             return [];
         }
     } catch (error) {
+        console.error(error);
+    }
+}
+
+//회원가입
+export async function joinEmail(email, password) {
+    const auth = getAuth();
+
+    try {
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password); //createUserWithEmailAndPassword: 회원 정보 만들기
+        const user = userCredential.user;
+        console.log(user);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//이메일 중복
+export async function checkEmail(email) {
+    const database = getDatabase();
+    const userRef = ref(database, 'users');
+
+    try {
+        const emailQuery = query(userRef, orderByChild('email'), equalTo(email));
+        const snapshot = await get(emailQuery);
+
+        if (snapshot.exists()) {
+            return true
+        } else {
+            return false
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+//회원 정보 확인 (구글X)
+export async function loginEmail(email, password) {
+    try{
+        const userCredential = await signInWithEmailAndPassword(auth, email, password); //signInWithEmailAndPassword: 회원 정보 확인
+        return userCredential.user;
+    }catch(error){
         console.error(error);
     }
 }

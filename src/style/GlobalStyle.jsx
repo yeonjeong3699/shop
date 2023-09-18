@@ -85,7 +85,7 @@ a{
 .container{
 	padding-top: 20px;
 	max-width: 1280px;
-	margin: 0px auto;
+	margin: 0px auto 50px;
 }
 
 .categoryTitle{
@@ -191,8 +191,6 @@ a{
 		gap: 16px;
 		h2{
 			width: 100%;
-			padding-bottom: 10px;
-			border-bottom: solid 1px #ddd;
 			font-family: 'GmarketSansMedium';
 			font-size: 36px;
 			letter-spacing: -1px;
@@ -200,16 +198,37 @@ a{
 		.description{
 			font-family: 'GmarketSansLight';
 			font-weight: 700;
-			font-size: 16px
+			font-size: 16px;
+			line-height: 1.4;
+			padding: 30px 0px;
+			border-top: solid 1px #ddd;
+			border-bottom: solid 1px #ddd;
 		}
 		.detail-opt{
-
+			margin-top: 6px;
+			.lable-text{
+				font-family: 'GmarketSansLight';
+				font-weight: 700;
+				font-size: 18px
+			}
+			#opt-select{
+				margin-left: 10px;
+				font-family: 'GmarketSansMedium';
+				font-size: 16px
+			}
+			.price{
+				width: 100%;
+				font-family: 'GmarketSansMedium';
+				font-size: 30px;
+				margin-top: 16px;
+			}
 		}
 		.btn-box{
 			width: 100%;
 			height: 60px;
 			display: flex;
 			gap: 10px;
+			margin-top: 10px;
 			.buy-btn{
 				width: 87%;
 				height: 100%;
@@ -240,67 +259,7 @@ a{
 		.alert-msg{
 
 		}
-		.price{
-			width: 100%;
-			padding-bottom: 16px;
-			font-family: 'GmarketSansMedium';
-			font-size: 30px;
-		}
 	}
-}
-
-.cartList{
-	display: flex;
-	flex-direction: column;
-	gap: 16px;
-	border-top: solid 1px #dddddd;
-	padding: 24px 0px;
-	li{
-		display: flex;
-		gap: 10px;
-		align-items: center;
-		border-bottom: solid 1px #dddddd;
-		
-		img{
-			width: 80px;
-		}
-
-		p{
-			font-family: 'GmarketSansMedium';
-			font-size: 18px;
-			color: #555555;
-		}
-
-		.quantity-arrow-box{
-			display: flex;
-			flex-direction: column;
-			gap: 3px;
-			.quantity-arrow{
-				cursor: pointer;
-				width: 20px;
-				height: 14px;
-				background-color: #555;
-				border-radius: 3px;
-				color: white;
-			}
-		}
-
-		button{
-			width: 50px;
-			height: 30px;
-			border: none;
-			border-radius: 5px;
-			background-color: #A4BE7B;
-			color: white;
-			font-size: 12px;
-			cursor: pointer;
-			font-family: 'GmarketSansLight';
-			font-weight: 900;
-			font-size: 15px;
-			letter-spacing: 1px;
-		}
-	}
-
 }
 
 `
